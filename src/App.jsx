@@ -32,11 +32,13 @@ const languageElements = languages.map(language => {
 )
 
 const wordElement = listOfLetters.map((letter, index) =>{
+  const isCorrect = userGuess.includes(letter);
+
  return <span 
       className="letter"
       key={index}
   >
-        {letter.toUpperCase()}
+        {isCorrect && letter.toUpperCase()}
   </span>
 })
 
