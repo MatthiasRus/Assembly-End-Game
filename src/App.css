@@ -12,27 +12,29 @@ body {
     display: flex;
     justify-content: center;
 }
-main{
+
+main {
     padding: 100px;
 }
+
 header {
     text-align: center;
 }
 
-header > h1 {
+header>h1 {
     font-size: 1.25rem;
     font-weight: 500;
     color: #F9F4DA;
 }
 
-header > p {
+header>p {
     font-size: 0.875rem;
     max-width: 350px;
     color: #8E8E8E;
 }
-
-.gameStatus{
-    background-color: #a82508bd;
+.gameStatus,
+.gameStatus .correct,
+.gameStatus .wrong {
     color: #F9F4DA;
     text-align: center;
     margin-block: 30px;
@@ -41,15 +43,17 @@ header > p {
     max-width: 350px;
 }
 
-.gameStatus p{
+
+.gameStatus p {
     margin: 5px;
 }
-.gameStatus h2{
+
+.gameStatus h2 {
     margin: 5px;
     font-size: 1.25rem;
 }
 
-.languages{
+.languages {
     display: flex;
     gap: 7px;
     max-width: 350px;
@@ -59,14 +63,14 @@ header > p {
     margin-block: 30px;
 }
 
-.languages span{
+.languages span {
     margin: 0;
-    padding: 4.5px ;
+    padding: 4.5px;
     border-radius: 4px;
     font-weight: 200;
 }
 
-.words{
+.words {
     display: flex;
     color: rgb(255, 255, 255);
     align-items: center;
@@ -74,17 +78,17 @@ header > p {
     gap: 3px;
 }
 
-.letter{
-    border-bottom:2px solid  #F9F4DA;
+.letter {
+    border-bottom: 2px solid #F9F4DA;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color:#323232;
+    background-color: #323232;
     height: 40px;
     width: 40px;
 }
 
-.keyboard{
+.keyboard {
     margin-block: 30px;
     display: flex;
     justify-content: center;
@@ -94,12 +98,12 @@ header > p {
     gap: 5px;
 }
 
-.keyLetter{
+.keyLetter {
     height: 30px;
     width: 30px;
-    background-color:#FCBA29;
+    background-color: #FCBA29;
     border-radius: 4px;
-    border: 1px solid  #D7D7D7;
+    border: 1px solid #D7D7D7;
 }
 
 button.new-game {
@@ -114,13 +118,14 @@ button.new-game {
     cursor: pointer;
 }
 
-.correct{
+.correct {
     background-color: #10A95B;
 }
 
-.wrong{
+.wrong {
     background-color: #EC5D49;
 }
+
 span.chip {
     border-radius: 3px;
     padding: 4.5px;

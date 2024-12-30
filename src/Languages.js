@@ -35,8 +35,8 @@ export const languages = [
         color: "#1E1E1E",
     },
     {
-        name: "Ruby",
-        backgroundColor: "#D02B2B",
+        name: "Rust",
+        backgroundColor: "#8B3103",
         color: "#F9F4DA",
     },
     {

@@ -8,25 +8,29 @@ const listOfLetters = Array.from(currentWord);
 
 const [userGuess, setUserGuess] = useState([]);
 
-function handleUserGuess(letter){
-  setUserGuess(userGuess => 
-    userGuess.includes(letter)? userGuess : [...userGuess,letter]);
-  }
 
 const wrongGuessCount = userGuess
                         .filter(guess => 
                           !listOfLetters.includes(guess)).length
-const isGameWon = wrongGuessCount < languages.length && listOfLetters.every(letter => userGuess.includes(letter))
-console.log(isGameWon)
 
-const isGameOver = wrongGuessCount >= languages.length ;
+const isGameWon = (wrongGuessCount < languages.length) && listOfLetters.every(letter => userGuess.includes(letter))
+const isGameLost = wrongGuessCount >= languages.length
+const isGameOver = isGameWon || isGameLost ;
+
+function handleUserGuess(letter){
+  !isGameOver ? setUserGuess(userGuess => 
+    userGuess.includes(letter)? userGuess : [...userGuess,letter])
+    : setUserGuess([])
+  }
 
 const languageElements = languages.map((language, index) => {
   const styles = {
     backgroundColor:`${language.backgroundColor}`,
               color:`${language.color}`
   }
-  const isLost = index < wrongGuessCount 
+ 
+  const isLost = index < wrongGuessCount ;
+
 
   
   const className = clsx("chip", isLost && "lost")
@@ -73,22 +77,33 @@ const keyBoardElement = alphabet.split("").map(letter =>{
               key={letter}
               value={letter}
               onClick={() => handleUserGuess(letter)}
-              
           >
               {letter.toUpperCase()}
           </button>
           )
 })
-
+  const gameStatusClass = clsx({
+    gameStatus : true,
+    correct:isGameWon,
+    wrong:isGameLost,
+  })
   return (
     <main>
         <header className="title">
           <h1>Assembly: End Game</h1>
           <p>Guess the word in 8 attempts to save the <code><strong>Programming</strong></code> world safe from Assembly!</p>
         </header>
-        <section className="gameStatus">
-          <h2>Game Over!</h2>
+        <section className={gameStatusClass}>
+          {
+            isGameOver && (isGameLost ? <>
+             <h2>Game Over!</h2>
           <p>You lose!Better start learning Assembly😭</p>
+            </> : <>
+            <h2>You win!</h2>
+            <p>Well done! 🎉</p>
+            </>)
+          }
+         
         </section>
         <section className="languages">
             {languageElements}
@@ -100,7 +115,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
         <section className="keyboard">
               {keyBoardElement}
         </section>
-        {(isGameWon || isGameOver) && <button className="new-game">
+        {isGameOver && <button className="new-game">
           New Game
         </button>}
     </main>
