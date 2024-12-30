@@ -3,8 +3,9 @@ import './App.css'
 import { languages } from './Languages'
 function App() {
   const [userGuess, setUserGuess] = useState([]);
-function handleUserGuess(e){
-  setUserGuess((prev) => [...prev,e.target.innerText])
+function handleUserGuess(letter){
+  setUserGuess(prev => 
+    prev.includes(letter)? prev : [...prev,letter])
 }
 
 const languageElements = languages.map(language => {
@@ -43,13 +44,12 @@ const keyBoardElement = alphabet.split("").map((letter, index) =>{
               className="keyLetter"
               key={index}
               value={letter}
-              onClick={handleUserGuess}
+              onClick={() => handleUserGuess(letter.toUpperCase())}
           >
               {letter.toUpperCase()}
           </button>
           )
 })
-console.log(userGuess)
 
   return (
     <main>
