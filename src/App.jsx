@@ -2,6 +2,11 @@ import { useState } from 'react'
 import './App.css'
 import { languages } from './Languages'
 function App() {
+  const [userGuess, setUserGuess] = useState([]);
+function handleUserGuess(e){
+  setUserGuess((prev) => [...prev,e.target.innerText])
+}
+
 const languageElements = languages.map(language => {
   const styles = {
     backgroundColor:`${language.backgroundColor}`,
@@ -21,14 +26,31 @@ const languageElements = languages.map(language => {
 
 const [currentWord, setCurrentWord] = useState("React");
 const listOLetters = Array.from(currentWord);
-const wordElement = listOLetters.map(letter =>{
+const wordElement = listOLetters.map((letter, index) =>{
  return <span 
       className="letter"
-      key={letter}
+      key={index}
   >
         {letter.toUpperCase()}
   </span>
 })
+
+
+const alphabet = "abcdefghijklmnopqrstuvwxyz"
+const keyBoardElement = alphabet.split("").map((letter, index) =>{
+  return (
+          <button 
+              className="keyLetter"
+              key={index}
+              value={letter}
+              onClick={handleUserGuess}
+          >
+              {letter.toUpperCase()}
+          </button>
+          )
+})
+console.log(userGuess)
+
   return (
     <main>
         <header className="title">
@@ -45,6 +67,13 @@ const wordElement = listOLetters.map(letter =>{
         <section className="words">
               {wordElement}
         </section>
+
+        <section className="keyboard">
+              {keyBoardElement}
+        </section>
+        <button className="new-game">
+          New Game
+        </button>
     </main>
   )
 }
