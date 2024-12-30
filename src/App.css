@@ -53,6 +53,7 @@ header > p {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
+    margin-block: 30px;
 }
 
 .languages span{
@@ -60,4 +61,18 @@ header > p {
     padding: 4.5px ;
     border-radius: 4px;
     font-weight: 200;
+}
+
+.words{
+    display: flex;
+    color: rgb(255, 255, 255);
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+
+.letter{
+    border-bottom:2px solid  #F9F4DA;
+    padding: 10px;
+    background-color:#353232;
 }

@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import './App.css'
 import { languages } from './Languages'
 function App() {
@@ -18,6 +19,16 @@ const languageElements = languages.map(language => {
 }
 )
 
+const [currentWord, setCurrentWord] = useState("React");
+const listOLetters = Array.from(currentWord);
+const wordElement = listOLetters.map(letter =>{
+ return <span 
+      className="letter"
+      key={letter}
+  >
+        {letter.toUpperCase()}
+  </span>
+})
   return (
     <main>
         <header className="title">
@@ -30,6 +41,9 @@ const languageElements = languages.map(language => {
         </section>
         <section className="languages">
             {languageElements}
+        </section>
+        <section className="words">
+              {wordElement}
         </section>
     </main>
   )
