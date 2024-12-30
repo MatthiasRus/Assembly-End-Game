@@ -113,3 +113,11 @@ button.new-game {
     margin-inline: auto;
     cursor: pointer;
 }
+
+.correct{
+    background-color: #10A95B;
+}
+
+.wrong{
+    background-color: #EC5D49;
+}
