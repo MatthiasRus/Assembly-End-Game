@@ -22,10 +22,11 @@ const languageElements = languages.map((language, index) => {
     backgroundColor:`${language.backgroundColor}`,
               color:`${language.color}`
   }
-  const lostClass = index < wrongGuessCount ? "lost" : "active" 
+  const isLost = index < wrongGuessCount 
+  const className = clsx("chip", isLost && "lost")
   return (
      <span 
-        className={clsx(lostClass, "chip")}
+        className={className}
         style={styles}
         key={language.name}
      >
