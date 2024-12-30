@@ -12,3 +12,52 @@ body {
     display: flex;
     justify-content: center;
 }
+
+header {
+    text-align: center;
+}
+
+header > h1 {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #F9F4DA;
+}
+
+header > p {
+    font-size: 0.875rem;
+    max-width: 350px;
+    color: #8E8E8E;
+}
+
+.gameStatus{
+    background-color: #a82508bd;
+    color: #F9F4DA;
+    text-align: center;
+    margin-block: 30px;
+    padding: 3px 0;
+    border-radius: 4px;
+}
+
+.gameStatus p{
+    margin: 5px;
+}
+.gameStatus h2{
+    margin: 5px;
+    font-size: 1.25rem;
+}
+
+.languages{
+    display: flex;
+    gap: 7px;
+    max-width: 350px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.languages span{
+    margin: 0;
+    padding: 4.5px ;
+    border-radius: 4px;
+    font-weight: 200;
+}
