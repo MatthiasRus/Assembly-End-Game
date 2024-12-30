@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { clsx } from "clsx";
 import './App.css'
 import { languages } from './Languages'
+import { getFarewellText } from './utils';
+
 function App() {  
 const [currentWord, setCurrentWord] = useState("react");
 const listOfLetters = Array.from(currentWord);
@@ -12,6 +14,7 @@ const [userGuess, setUserGuess] = useState([]);
 const wrongGuessCount = userGuess
                         .filter(guess => 
                           !listOfLetters.includes(guess)).length
+const removedLanguage = languages[wrongGuessCount-1]?.name
 
 const isGameWon = (wrongGuessCount < languages.length) && listOfLetters.every(letter => userGuess.includes(letter))
 const isGameLost = wrongGuessCount >= languages.length
@@ -31,8 +34,6 @@ const languageElements = languages.map((language, index) => {
  
   const isLost = index < wrongGuessCount ;
 
-
-  
   const className = clsx("chip", isLost && "lost")
   return (
      <span 
@@ -90,7 +91,9 @@ const keyBoardElement = alphabet.split("").map(letter =>{
 
   function renderGameStatus(){
     if (!isGameOver){
-      return null;
+      return <>
+        {removedLanguage !==undefined ?getFarewellText(removedLanguage):null}
+      </>;
     }
 
     if (isGameLost){
