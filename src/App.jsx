@@ -16,6 +16,10 @@ function handleUserGuess(letter){
 const wrongGuessCount = userGuess
                         .filter(guess => 
                           !listOfLetters.includes(guess)).length
+const isGameWon = wrongGuessCount < languages.length && listOfLetters.every(letter => userGuess.includes(letter))
+console.log(isGameWon)
+
+const isGameOver = wrongGuessCount >= languages.length ;
 
 const languageElements = languages.map((language, index) => {
   const styles = {
@@ -23,6 +27,8 @@ const languageElements = languages.map((language, index) => {
               color:`${language.color}`
   }
   const isLost = index < wrongGuessCount 
+
+  
   const className = clsx("chip", isLost && "lost")
   return (
      <span 
@@ -58,6 +64,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
       correct:isCorrect,
       wrong : isWrong,
       keyLetter: true,
+      
     }
   )
   return (
@@ -66,6 +73,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
               key={letter}
               value={letter}
               onClick={() => handleUserGuess(letter)}
+              
           >
               {letter.toUpperCase()}
           </button>
@@ -92,9 +100,9 @@ const keyBoardElement = alphabet.split("").map(letter =>{
         <section className="keyboard">
               {keyBoardElement}
         </section>
-        <button className="new-game">
+        {(isGameWon || isGameOver) && <button className="new-game">
           New Game
-        </button>
+        </button>}
     </main>
   )
 }
