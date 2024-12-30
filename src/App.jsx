@@ -13,6 +13,9 @@ function handleUserGuess(letter){
     userGuess.includes(letter)? userGuess : [...userGuess,letter]);
   }
 
+const wrongGuessCount = userGuess
+                        .filter(guess => 
+                          !listOfLetters.includes(guess)).length
 
 const languageElements = languages.map(language => {
   const styles = {
