@@ -32,9 +32,7 @@ header>p {
     max-width: 350px;
     color: #8E8E8E;
 }
-.gameStatus,
-.gameStatus .correct,
-.gameStatus .wrong {
+.gameStatus {
     color: #F9F4DA;
     text-align: center;
     margin-block: 30px;
@@ -42,7 +40,13 @@ header>p {
     border-radius: 4px;
     max-width: 350px;
 }
+section.gameStatus.won {
+    background-color: #10A95B;
+}
 
+section.gameStatus.lost {
+    background-color: #BA2A2A;
+}
 
 .gameStatus p {
     margin: 5px;

@@ -84,8 +84,8 @@ const keyBoardElement = alphabet.split("").map(letter =>{
 })
   const gameStatusClass = clsx({
     gameStatus : true,
-    correct:isGameWon,
-    wrong:isGameLost,
+    won:isGameWon,
+    lost:isGameLost,
   })
   return (
     <main>
