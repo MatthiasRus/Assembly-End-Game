@@ -87,6 +87,28 @@ const keyBoardElement = alphabet.split("").map(letter =>{
     won:isGameWon,
     lost:isGameLost,
   })
+
+  function renderGameStatus(){
+    if (!isGameOver){
+      return null;
+    }
+
+    if (isGameLost){
+      return(
+        <>
+             <h2>Game Over!</h2>
+          <p>You lose!Better start learning Assembly😭</p>
+            </>
+      )
+    }else if (isGameWon){
+      return(
+        <>
+            <h2>You win!</h2>
+            <p>Well done! 🎉</p>
+            </>
+      )
+    }
+  }
   return (
     <main>
         <header className="title">
@@ -94,15 +116,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
           <p>Guess the word in 8 attempts to save the <code><strong>Programming</strong></code> world safe from Assembly!</p>
         </header>
         <section className={gameStatusClass}>
-          {
-            isGameOver && (isGameLost ? <>
-             <h2>Game Over!</h2>
-          <p>You lose!Better start learning Assembly😭</p>
-            </> : <>
-            <h2>You win!</h2>
-            <p>Well done! 🎉</p>
-            </>)
-          }
+          {renderGameStatus()}
          
         </section>
         <section className="languages">
