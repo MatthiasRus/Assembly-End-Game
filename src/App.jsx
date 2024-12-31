@@ -80,6 +80,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
               key={letter}
               value={letter}
               onClick={() => handleUserGuess(letter)}
+              disabled={isGameOver}
           >
               {letter.toUpperCase()}
           </button>
