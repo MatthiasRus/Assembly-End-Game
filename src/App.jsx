@@ -93,9 +93,12 @@ const keyBoardElement = alphabet.split("").map(letter =>{
 
   function renderGameStatus(){
     if (!isGameOver){
-      return <>
-                  { removedLanguage !== undefined ? getFarewellText(removedLanguage) : null}
-            </>;
+      return removedLanguage !== undefined ? 
+      (
+      <p className='farewell-message'>
+                  {  getFarewellText(removedLanguage) }
+      </p>)
+            :null
     }
 
     if (isGameLost){
