@@ -2,18 +2,16 @@ import { useState } from 'react'
 import { clsx } from "clsx";
 import './App.css'
 import { languages } from './Languages'
-import { getFarewellText } from './utils';
-import { words } from './words';
+import { getFarewellText,chooseRandomWord } from './utils';
+import Confetti from "react-confetti"
 
 function App() {  
 const [currentWord, setCurrentWord] = useState(() => chooseRandomWord());
 const listOfLetters = Array.from(currentWord);
 
 const [userGuess, setUserGuess] = useState([]);
-function chooseRandomWord(){
-  const randomNum = Math.floor(Math.random() * words.length);
-  return words[randomNum]
-}
+
+
 
 const wrongGuessCount = userGuess
                         .filter(guess => 
@@ -38,7 +36,7 @@ const languageElements = languages.map((language, index) => {
               color:`${language.color}`
   }
  
-  const isLost = index < wrongGuessCount ;
+  const isLost = index < wrongGuessCount - 1 ;
 
   const className = clsx("chip", isLost && "lost")
   return (
@@ -55,13 +53,23 @@ const languageElements = languages.map((language, index) => {
 
 const wordElement = listOfLetters.map((letter, index) =>{
   const isCorrect = userGuess.includes(letter);
-
- return <span 
+  const className = clsx({
+    correctLetter:isCorrect,
+    wrongLetter : !isCorrect,
+    letter:true
+  })
+ return !isGameOver ? (<span 
       className="letter"
       key={index}
   >
         {isCorrect && letter.toUpperCase()}
-  </span>
+  </span>):(
+    (<span 
+      className={className}
+      key={index}
+  >
+        {letter.toUpperCase()}
+  </span>))
 })
 
 
@@ -129,6 +137,7 @@ const keyBoardElement = alphabet.split("").map(letter =>{
   }
   return (
     <main>
+      {isGameWon&&<Confetti/>}
         <header className="title">
           <h1>Assembly: End Game</h1>
           <p>Guess the word in 8 attempts to save the <code><strong>Programming</strong></code> world safe from Assembly!</p>

@@ -122,12 +122,19 @@ button.new-game {
     cursor: pointer;
 }
 
-.correct {
+.keyboard .correct {
     background-color: #10A95B;
 }
 
-.wrong {
+.keyboard .wrong {
     background-color: #EC5D49;
+}
+
+.correctLetter{
+    color:#10A95B;
+}
+.wrongLetter{
+    color: red;
 }
 
 span.chip {
