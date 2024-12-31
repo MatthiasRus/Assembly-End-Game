@@ -21,7 +21,7 @@ const wasCorrectLetter = removedLetter && listOfLetters.includes(removedLetter)
 const removedLanguage = !wasCorrectLetter ? languages[wrongGuessCount - 1]?.name : undefined
 
 const isGameWon = (wrongGuessCount < languages.length) && listOfLetters.every(letter => userGuess.includes(letter))
-const isGameLost = wrongGuessCount >= languages.length
+const isGameLost = wrongGuessCount >= languages.length - 1
 const isGameOver = isGameWon || isGameLost ;
 
 function handleUserGuess(letter){
@@ -36,7 +36,7 @@ const languageElements = languages.map((language, index) => {
               color:`${language.color}`
   }
  
-  const isLost = index < wrongGuessCount - 1 ;
+  const isLost = index < wrongGuessCount ;
 
   const className = clsx("chip", isLost && "lost")
   return (
@@ -132,12 +132,15 @@ const keyBoardElement = alphabet.split("").map(letter =>{
   }
 
   function resetGame(){
-    setCurrentWord(() => chooseRandomWord());
+    setCurrentWord(chooseRandomWord());
     setUserGuess([]);
   }
   return (
     <main>
-      {isGameWon&&<Confetti/>}
+      {isGameWon&&<Confetti
+                  recycle={false}
+                  numberOfPieces={1000}
+      />}
         <header className="title">
           <h1>Assembly: End Game</h1>
           <p>Guess the word in 8 attempts to save the <code><strong>Programming</strong></code> world safe from Assembly!</p>
