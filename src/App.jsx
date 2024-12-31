@@ -14,7 +14,9 @@ const [userGuess, setUserGuess] = useState([]);
 const wrongGuessCount = userGuess
                         .filter(guess => 
                           !listOfLetters.includes(guess)).length
-const removedLanguage = languages[wrongGuessCount-1]?.name
+const removedLetter = userGuess[userGuess.length-1];
+const wasCorrectLetter = removedLetter && listOfLetters.includes(removedLetter)
+const removedLanguage = !wasCorrectLetter ? languages[wrongGuessCount - 1]?.name : undefined
 
 const isGameWon = (wrongGuessCount < languages.length) && listOfLetters.every(letter => userGuess.includes(letter))
 const isGameLost = wrongGuessCount >= languages.length
@@ -92,8 +94,8 @@ const keyBoardElement = alphabet.split("").map(letter =>{
   function renderGameStatus(){
     if (!isGameOver){
       return <>
-        {removedLanguage !==undefined ?getFarewellText(removedLanguage):null}
-      </>;
+                  { removedLanguage !== undefined ? getFarewellText(removedLanguage) : null}
+            </>;
     }
 
     if (isGameLost){
