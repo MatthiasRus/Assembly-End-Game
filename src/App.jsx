@@ -3,13 +3,17 @@ import { clsx } from "clsx";
 import './App.css'
 import { languages } from './Languages'
 import { getFarewellText } from './utils';
+import { words } from './words';
 
 function App() {  
-const [currentWord, setCurrentWord] = useState("react");
+const [currentWord, setCurrentWord] = useState(() => chooseRandomWord());
 const listOfLetters = Array.from(currentWord);
 
 const [userGuess, setUserGuess] = useState([]);
-
+function chooseRandomWord(){
+  const randomNum = Math.floor(Math.random() * words.length);
+  return words[randomNum]
+}
 
 const wrongGuessCount = userGuess
                         .filter(guess => 
@@ -118,6 +122,11 @@ const keyBoardElement = alphabet.split("").map(letter =>{
       )
     }
   }
+
+  function resetGame(){
+    setCurrentWord(() => chooseRandomWord());
+    setUserGuess([]);
+  }
   return (
     <main>
         <header className="title">
@@ -138,7 +147,11 @@ const keyBoardElement = alphabet.split("").map(letter =>{
         <section className="keyboard">
               {keyBoardElement}
         </section>
-        {isGameOver && <button className="new-game">
+        {isGameOver && <button 
+              className="new-game"
+              onClick={resetGame}
+        
+        >
           New Game
         </button>}
     </main>
